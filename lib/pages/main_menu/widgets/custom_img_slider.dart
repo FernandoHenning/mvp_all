@@ -11,9 +11,9 @@ class ImageSlider extends StatefulWidget {
 class _ImageSliderState extends State<ImageSlider> {
   late PageController _pageController;
   List<String> images = [
-    "https://www.business2community.com/wp-content/uploads/2020/10/sales-promotion-ideas-pet-supplies-plus-20-percent-off_0_0.png",
-    "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/pet-shop-promotion-instagram-post-design-template-75d5225438c71177ea1c6171d0fd597c_screen.jpg",
-    "https://img.freepik.com/free-psd/pet-store-social-media-promotion-instagram-banner-post-design-template_205739-332.jpg"
+    "https://images.pexels.com/photos/757455/pexels-photo-757455.jpeg?auto=compress&cs=tinysrgb&w=900&h=600dpr=1",
+    "https://images.pexels.com/photos/8939264/pexels-photo-8939264.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1",
+    "https://images.pexels.com/photos/485294/pexels-photo-485294.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1"
   ];
   int pagePosition = 1;
 
@@ -26,8 +26,11 @@ class _ImageSliderState extends State<ImageSlider> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
+        Container(
+          height: MediaQuery.of(context).size.height / 3,
+          width: double.infinity,
           child: PageView.builder(
               itemCount: images.length,
               pageSnapping: true,
@@ -39,7 +42,19 @@ class _ImageSliderState extends State<ImageSlider> {
               },
               itemBuilder: (context, pagePosition) {
                 return Container(
-                  margin: const EdgeInsets.all(10),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  decoration: const BoxDecoration(
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10,
+                        spreadRadius: 1,
+                        blurStyle: BlurStyle.outer,
+                      ),
+                    ],
+                  ),
                   child: Image.network(images[pagePosition]),
                 );
               }),

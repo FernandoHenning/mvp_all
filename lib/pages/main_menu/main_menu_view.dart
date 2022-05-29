@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_all_9/pages/main_menu/widgets/custom_circular_image_slider.dart';
 import 'package:mvp_all_9/pages/main_menu/widgets/custom_img_slider.dart';
 import 'package:mvp_all_9/style/colors/colors_views.dart';
 
@@ -69,32 +70,20 @@ class _MainMenuState extends State<MainMenu> {
           foregroundColor: ColorsViews.activeSliderColor,
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: ImageSlider(),
-              ),
-              Expanded(
-                flex: 1,
-                child: Container(
-                  color: Colors.green,
+          padding: const EdgeInsets.all(10.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: const [
+                ImageSlider(),
+                SizedBox(
+                  height: 25,
                 ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  color: Colors.blue,
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  color: Colors.indigo,
-                ),
-              ),
-            ],
+                CircularImageSlider(),
+                SizedBox(
+                  height: 25,
+                )
+              ],
+            ),
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(

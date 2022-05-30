@@ -4,8 +4,8 @@ import 'package:mvp_all_9/widgets/AppBar/appbar_custom.dart';
 import 'package:mvp_all_9/widgets/TextField/textfield_custom.dart';
 import 'package:mvp_all_9/widgets/button_custom.dart';
 
-class RecuperarContrasenaScreen extends StatelessWidget {
-  const RecuperarContrasenaScreen({Key? key}) : super(key: key);
+class RecoverPasswordView extends StatelessWidget {
+  const RecoverPasswordView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

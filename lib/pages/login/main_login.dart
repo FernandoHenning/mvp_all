@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_all_9/pages/login/login_form.dart';
 import 'package:mvp_all_9/pages/register/register_screen.dart';
-import 'package:mvp_all_9/widgets/loginWidget/button_custom.dart';
-import 'package:mvp_all_9/widgets/textButtom_custom.dart';
+import 'package:mvp_all_9/style/colors/colors_views.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,147 +9,204 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: double.infinity,
-          color: Colors.white,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Padding(
-                padding: EdgeInsets.fromLTRB(24, 50, 24, 0),
-                child: ImageTop(),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(24, 0, 24, 0),
-                child: ButtonsCenter(),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(24, 0, 24, 20),
-                child: ButtonBottom(),
-              ),
-            ],
-          ),
-        ),
+      body: Column(
+        children: <Widget>[
+          LoginUI(),
+          Column(children: const <Widget>[
+            LoginOption(),
+          ]),
+        ],
       ),
     );
   }
 }
 
-class ImageTop extends StatelessWidget {
-  const ImageTop({
-    Key? key,
-  }) : super(key: key);
+class LoginUI extends StatelessWidget {
+  const LoginUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 150,
-      child: Image(
-        image: AssetImage("assets/image/splash.png"),
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 100,
+      ),
+      child: SizedBox(
+        height: 200,
+        width: 350,
+        child: Image.asset('assets/image/splash.png'),
       ),
     );
   }
 }
 
-class ButtonBottom extends StatelessWidget {
-  const ButtonBottom({
-    Key? key,
-  }) : super(key: key);
+class LoginOption extends StatelessWidget {
+  const LoginOption({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+      children: <Widget>[
         SizedBox(
-          height: 30,
-          child: TextButtomCustom(
-            width: 300,
-            text: "Entrar Como invitado",
-            color: const Color(0xFFFC1460),
-            function: () {},
-            fontSize: 13,
+          width: 300,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 40),
+            child: Container(
+              alignment: Alignment.center,
+              child: Column(
+                children: <Widget>[
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color(0xFF3169f5),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width * .75, 50),
+                      maximumSize:
+                          Size(MediaQuery.of(context).size.width * .75, 50),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Icon(Icons.android),
+                        const Text(
+                          'Continuar con Google',
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        primary: const Color(0xFF324fa5),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width * .75, 50),
+                        maximumSize:
+                            Size(MediaQuery.of(context).size.width * .75, 50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const <Widget>[
+                          Icon(Icons.facebook),
+                          Text(
+                            'Continuar con Facebook',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        side: const BorderSide(
+                            color: Color(0xFF64686f), width: 3),
+                        primary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        minimumSize:
+                            Size(MediaQuery.of(context).size.width * .75, 50),
+                        maximumSize:
+                            Size(MediaQuery.of(context).size.width * .75, 50),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const RegisterForm()));
+                        ;
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: const <Widget>[
+                          Icon(
+                            Icons.email,
+                            color: Color(0xFF64686f),
+                          ),
+                          Text(
+                            'Registrarse con e-mail',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Color(0xFF64686f),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-        SizedBox(
-          height: 30,
-          child: TextButtomCustom(
-            width: 300,
-            text: "Entrar Como vendedor",
-            color: const Color(0xFF76aa75),
-            function: () {},
-            fontSize: 13,
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text("¿Ya tienes una cuenta?"),
-            TextButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const LoginForm()));
-              },
-              child: const Text(
-                "Iniciar sesión",
-                style: TextStyle(
-                  color: Color(0xFFFC1460),
-                  fontSize: 13,
+        Padding(
+          padding: const EdgeInsets.only(top: 60),
+          child: Column(children: <Widget>[
+            SizedBox(
+              height: 30,
+              width: 150,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                    primary: ColorsViews.activeSliderColor),
+                onPressed: () {},
+                child: const Text(
+                  'Entrar como invitado',
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
                 ),
               ),
             ),
-          ],
-        )
-      ],
-    );
-  }
-}
-
-class ButtonsCenter extends StatelessWidget {
-  const ButtonsCenter({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ButtomCustomLogin(
-          function: () {},
-          text: "Continuar con Google",
-          icon: const Icon(Icons.android).icon!,
-          color: const Color(0xFF3169F5),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ButtomCustomLogin(
-          function: () {},
-          text: "Continuar con Facebook",
-          icon: const Icon(Icons.facebook).icon!,
-          color: const Color(0xFF324FA5),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        ButtomCustomLogin(
-          function: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (BuildContext context) => const RegisterScreen(),
+            SizedBox(
+              height: 30,
+              width: 150,
+              child: TextButton(
+                style: TextButton.styleFrom(primary: Colors.green[400]),
+                onPressed: () {},
+                child: const Text(
+                  'Entrar como vendedor',
+                  style: TextStyle(
+                    fontSize: 13,
+                  ),
+                ),
               ),
-            );
-          },
-          text: "Registrarse con e-mail",
-          icon: Icons.email,
-          color: const Color(0xFFFFFFFF),
-          borderColor: const Color(0xFF64686f),
-          textColor: const Color(0xFF64686f),
-          iconColor: const Color(0xFF64686f),
-          // borderColor: ,
+            ),
+          ]),
         ),
-        const SizedBox(
-          height: 20,
+        Padding(
+          padding: const EdgeInsets.only(left: 100.0, top: 100),
+          child: Row(
+            children: <Widget>[
+              const Text(
+                '¿Ya tienes una cuenta?',
+                textAlign: TextAlign.center,
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginForm()));
+                },
+                child: const Text(
+                  'Iniciar sesión',
+                  style: TextStyle(
+                    color: ColorsViews.activeSliderColor,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

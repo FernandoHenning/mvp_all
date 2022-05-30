@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mvp_all_9/pages/login/main_login.dart';
 import 'package:mvp_all_9/pages/main_menu/widgets/custom_circular_image_slider.dart';
 import 'package:mvp_all_9/pages/main_menu/widgets/custom_grid.dart';
 import 'package:mvp_all_9/pages/main_menu/widgets/custom_img_slider.dart';
@@ -65,8 +67,16 @@ class _MainMenuState extends State<MainMenu> {
               ),
               TextButton.icon(
                 // <-- TextButton
-                onPressed: () {},
-                icon: Icon(
+                onPressed: () {
+                  FirebaseAuth.instance.signOut().then((value) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                    );
+                  });
+                },
+                icon: const Icon(
                   Icons.logout,
                   color: ColorsViews.activeSliderColor,
                   size: 24.0,

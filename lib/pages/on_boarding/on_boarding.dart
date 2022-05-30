@@ -133,7 +133,7 @@ class _ButtonBottom extends StatelessWidget {
         borderColor: borderColor ?? ColorsViews.borderButtonColor,
         disable: disable ?? true,
         text: Text(
-          "Siguiente",
+          colorActive != null ? "Continuar" : "Siguiente",
           style: TextStyle(
             color: colorTextActive ?? ColorsViews.textButtonDisableColor,
             fontWeight: FontWeight.bold,

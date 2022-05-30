@@ -27,7 +27,7 @@ class CircularImageSlider extends StatelessWidget {
               ));
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -44,7 +44,7 @@ class CircularImageSlider extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           GestureDetector(
@@ -62,7 +62,7 @@ class CircularImageSlider extends StatelessWidget {
               ));
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -79,7 +79,7 @@ class CircularImageSlider extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           GestureDetector(
@@ -97,7 +97,7 @@ class CircularImageSlider extends StatelessWidget {
               ));
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -114,7 +114,7 @@ class CircularImageSlider extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           GestureDetector(
@@ -132,7 +132,7 @@ class CircularImageSlider extends StatelessWidget {
               ));
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -149,25 +149,27 @@ class CircularImageSlider extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           GestureDetector(
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: const Text('Tap!'),
-                duration: const Duration(seconds: 1),
-                action: SnackBarAction(
-                  label: 'Dismiss',
-                  onPressed: () {
-                    // Hide the snackbar before its duration ends
-                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                  },
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Tap!'),
+                  duration: const Duration(seconds: 1),
+                  action: SnackBarAction(
+                    label: 'Dismiss',
+                    onPressed: () {
+                      // Hide the snackbar before its duration ends
+                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                    },
+                  ),
                 ),
-              ));
+              );
             },
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(

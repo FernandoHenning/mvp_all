@@ -1,214 +1,266 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mvp_all_9/pages/main_menu/main_menu_view.dart';
 import 'package:mvp_all_9/pages/recover_password/recover_password_view.dart';
 import 'package:mvp_all_9/pages/register/register_screen.dart';
 import 'package:mvp_all_9/style/colors/colors_views.dart';
-import 'package:mvp_all_9/widgets/AppBar/appbar_custom.dart';
-import 'package:mvp_all_9/widgets/TextField/textfield_custom.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      appBar: AppBarCustom(
-        title: "Inicia sesión",
-      ),
-      body: _BodyLoginForm(),
-    );
-  }
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _BodyLoginForm extends StatelessWidget {
-  const _BodyLoginForm({
-    Key? key,
-  }) : super(key: key);
+class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+  bool _passwordVisible = false;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    const textStyle2 = TextStyle(
-      color: ColorsViews.txtHeaderColor,
-      fontSize: 16,
-    );
-    const textStyle3 = TextStyle(
-      color: ColorsViews.leyendaColor,
-      fontSize: 16,
-    );
-    return SingleChildScrollView(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            // color: Colors.amber,
-            width: double.infinity,
-            height: size.height * 0.1,
-            alignment: Alignment.centerLeft,
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Text(
-              "Iniciar sesión en tu cuenta para continuar",
-              style: textStyle3,
-            ),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: ColorsViews.activeSliderColor,
+          backgroundColor: ColorsViews.backgrounAppBar,
+          title: Text(
+            "Iniciar sesión",
+            style: TextStyle(color: Colors.white),
           ),
-          _FormText(size: size, textStyle2: textStyle2),
-        ],
-      ),
-    );
-  }
-}
-
-class _Button extends StatelessWidget {
-  const _Button({
-    Key? key,
-    required Size size,
-  })  : _size = size,
-        super(key: key);
-
-  final Size _size;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        height: _size.height * 0.38,
-        color: Colors.red,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        // color: Colors.red,
-        alignment: Alignment.bottomCenter,
-        child: Container());
-  }
-}
-
-class _FormText extends StatelessWidget {
-  const _FormText({
-    Key? key,
-    required Size size,
-    required this.textStyle2,
-  })  : _size = size,
-        super(key: key);
-
-  final Size _size;
-  final TextStyle textStyle2;
-  final String email = "";
-  final String password = "";
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: _size.height * 0.38,
-      alignment: Alignment.center,
-      child: Column(
-        children: [
-          _ContainerTextField(
-            text: "Correo electrónico",
-            hintText: "Email Address",
-          ),
-          _ContainerTextField(
-            text: "Contraseña",
-            hintText: "Password",
-            password: true,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 160),
-            child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) =>
-                          const RecuperarContrasenaScreen(),
-                    ),
-                  );
-                },
-                child: Text(
-                  "¿Has olvidado tu contraseña?",
-                  style: textStyle2,
-                )),
-          ),
-          Column(
-            children: [
-              TextButton(
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(
-                      ColorsViews.backgroundButtonActiveColor),
-                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(100.0))),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MainMenu()),
-                  );
-                },
-                child: const Center(
-                  child: Text(
-                    "Iniciar sesión",
-                    style: TextStyle(color: ColorsViews.whiteColor),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("¿Todavia no tienes una cuenta?"),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const RegisterScreen()));
-                    },
-                    child: const Text(
-                      "Regístrate",
-                      style: TextStyle(
-                        color: Color(0xFFFC1460),
-                        fontSize: 13,
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 50),
+                      child: Text(
+                        'Inicia sesión en tu cuenta para continuar',
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 117, 113, 113),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Correo electrónico',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: emailController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                            ),
+                            filled: true,
+                            hintStyle: TextStyle(
+                                color: Color.fromARGB(255, 161, 161, 161)),
+                            hintText: "Email Adress",
+                            fillColor: Colors.white70,
+                          ),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 25,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Contraseña',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: passwordController,
+                          keyboardType: TextInputType.text,
+                          obscureText:
+                              !_passwordVisible, //This will obscure text dynamically
+                          decoration: InputDecoration(
+                            hintText: 'Password',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(
+                                  color: Colors.blue,
+                                )),
+                            filled: true,
+                            hintStyle: const TextStyle(
+                              color: Color.fromARGB(255, 161, 161, 161),
+                            ),
+                            fillColor: Colors.white70,
+                            // Here is key idea
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                // Based on passwordVisible state choose the icon
+                                _passwordVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Color.fromARGB(255, 179, 179, 179),
+                              ),
+                              onPressed: () {
+                                // Update the state i.e. toogle the state of passwordVisible variable
+                                setState(() {
+                                  _passwordVisible = !_passwordVisible;
+                                });
+                              },
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: RichText(
+                            text: TextSpan(children: <InlineSpan>[
+                              TextSpan(
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const RecoverPasswordView()));
+                                  },
+                                text: '¿Has olvidado tu contraseña?',
+                                style: const TextStyle(
+                                    color: ColorsViews.activeSliderColor,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 280,
+                ),
+                Column(
+                  children: [
+                    Container(
+                      height: 50,
+                      child: TextButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              ColorsViews.backgroundButtonActiveColor),
+                          shape: MaterialStateProperty.all(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(100.0))),
+                        ),
+                        onPressed: () {
+                          String email = emailController.text;
+                          String password = passwordController.text;
 
-class _ContainerTextField extends StatelessWidget {
-  final String text;
-  final String hintText;
-  bool? password;
-  _ContainerTextField(
-      {Key? key, required this.hintText, this.password, required this.text})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: Text(
-              text,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: emailController.text,
+                                  password: passwordController.text)
+                              .then((value) {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MainMenu()),
+                                (r) => false);
+                          }).onError((error, stackTrace) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(error.toString()),
+                                duration: const Duration(seconds: 1),
+                                action: SnackBarAction(
+                                  label: 'Dismiss',
+                                  onPressed: () {
+                                    // Hide the snackbar before its duration ends
+                                    ScaffoldMessenger.of(context)
+                                        .hideCurrentSnackBar();
+                                  },
+                                ),
+                              ),
+                            );
+                          });
+                        },
+                        child: const Center(
+                          child: Text(
+                            "Ingresar",
+                            style: TextStyle(color: ColorsViews.whiteColor),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("¿Todavia no tienes una cuenta?"),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const RegisterForm()));
+                          },
+                          child: const Text(
+                            "Regístrate",
+                            style: TextStyle(
+                              color: Color(0xFFFC1460),
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
-          SizedBox(
-              // height: 10,
-              child: TextFieldCustom(
-            hintText: hintText,
-            change: () {},
-            password: password,
-          )),
-        ],
+        ),
       ),
     );
   }

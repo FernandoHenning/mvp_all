@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_all_9/pages/main_menu/widgets/custom_circular_image_slider.dart';
+import 'package:mvp_all_9/pages/main_menu/widgets/custom_grid.dart';
 import 'package:mvp_all_9/pages/main_menu/widgets/custom_img_slider.dart';
 import 'package:mvp_all_9/style/colors/colors_views.dart';
 
@@ -61,7 +62,20 @@ class _MainMenuState extends State<MainMenu> {
                     },
                   ),
                 ],
-              )
+              ),
+              TextButton.icon(
+                // <-- TextButton
+                onPressed: () {},
+                icon: Icon(
+                  Icons.logout,
+                  color: ColorsViews.activeSliderColor,
+                  size: 24.0,
+                ),
+                label: Text(
+                  "Salir",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ),
             ],
           ),
         ),
@@ -81,7 +95,9 @@ class _MainMenuState extends State<MainMenu> {
                 CircularImageSlider(),
                 SizedBox(
                   height: 25,
-                )
+                ),
+                FoodCustomGrid(),
+                ToysCustomGrid(),
               ],
             ),
           ),

@@ -27,8 +27,7 @@ class _BodyLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
-    bool valueb = false;
+    Size size = MediaQuery.of(context).size;
     const textStyle2 = TextStyle(
       color: ColorsViews.txtHeaderColor,
       fontSize: 16,
@@ -45,7 +44,7 @@ class _BodyLoginForm extends StatelessWidget {
           Container(
             // color: Colors.amber,
             width: double.infinity,
-            height: _size.height * 0.1,
+            height: size.height * 0.1,
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: const Text(
@@ -53,8 +52,7 @@ class _BodyLoginForm extends StatelessWidget {
               style: textStyle3,
             ),
           ),
-          _FormText(size: _size, textStyle2: textStyle2),
-          _Button(size: _size)
+          _FormText(size: size, textStyle2: textStyle2),
         ],
       ),
     );
@@ -73,66 +71,13 @@ class _Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _size.height * 0.38,
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      // color: Colors.red,
-      alignment: Alignment.bottomCenter,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          TextButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(
-                  ColorsViews.backgroundButtonActiveColor),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(100.0))),
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const MainMenu()),
-              );
-            },
-            child: SizedBox(
-              width: double.infinity,
-              height: 40,
-              child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Iniciar sesión",
-                    style: TextStyle(color: ColorsViews.whiteColor),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("¿Todavia no tienes una cuenta?"),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterScreen()));
-                },
-                child: const Text(
-                  "Regístrate",
-                  style: TextStyle(
-                    color: Color(0xFFFC1460),
-                    fontSize: 13,
-                  ),
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+        height: _size.height * 0.38,
+        color: Colors.red,
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        // color: Colors.red,
+        alignment: Alignment.bottomCenter,
+        child: Container());
   }
 }
 
@@ -146,6 +91,8 @@ class _FormText extends StatelessWidget {
 
   final Size _size;
   final TextStyle textStyle2;
+  final String email = "";
+  final String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +127,52 @@ class _FormText extends StatelessWidget {
                   "¿Has olvidado tu contraseña?",
                   style: textStyle2,
                 )),
-          )
+          ),
+          Column(
+            children: [
+              TextButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                      ColorsViews.backgroundButtonActiveColor),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(100.0))),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainMenu()),
+                  );
+                },
+                child: const Center(
+                  child: Text(
+                    "Iniciar sesión",
+                    style: TextStyle(color: ColorsViews.whiteColor),
+                  ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("¿Todavia no tienes una cuenta?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const RegisterScreen()));
+                    },
+                    child: const Text(
+                      "Regístrate",
+                      style: TextStyle(
+                        color: Color(0xFFFC1460),
+                        fontSize: 13,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     );

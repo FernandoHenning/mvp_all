@@ -14,8 +14,17 @@ class CircularImageSlider extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              const snackBar = SnackBar(content: Text("Tap!"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const Text('Tap!'),
+                duration: const Duration(seconds: 1),
+                action: SnackBarAction(
+                  label: 'Dismiss',
+                  onPressed: () {
+                    // Hide the snackbar before its duration ends
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  },
+                ),
+              ));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -40,8 +49,17 @@ class CircularImageSlider extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              const snackBar = SnackBar(content: Text("Tap!"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const Text('Tap!'),
+                duration: const Duration(seconds: 1),
+                action: SnackBarAction(
+                  label: 'Dismiss',
+                  onPressed: () {
+                    // Hide the snackbar before its duration ends
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  },
+                ),
+              ));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -66,8 +84,17 @@ class CircularImageSlider extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              const snackBar = SnackBar(content: Text("Tap!"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const Text('Tap!'),
+                duration: const Duration(seconds: 1),
+                action: SnackBarAction(
+                  label: 'Dismiss',
+                  onPressed: () {
+                    // Hide the snackbar before its duration ends
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  },
+                ),
+              ));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -92,8 +119,17 @@ class CircularImageSlider extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              const snackBar = SnackBar(content: Text("Tap!"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const Text('Tap!'),
+                duration: const Duration(seconds: 1),
+                action: SnackBarAction(
+                  label: 'Dismiss',
+                  onPressed: () {
+                    // Hide the snackbar before its duration ends
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  },
+                ),
+              ));
             },
             child: Container(
               decoration: BoxDecoration(
@@ -118,8 +154,17 @@ class CircularImageSlider extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              const snackBar = SnackBar(content: Text("Tap!"));
-              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: const Text('Tap!'),
+                duration: const Duration(seconds: 1),
+                action: SnackBarAction(
+                  label: 'Dismiss',
+                  onPressed: () {
+                    // Hide the snackbar before its duration ends
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                  },
+                ),
+              ));
             },
             child: Container(
               decoration: BoxDecoration(

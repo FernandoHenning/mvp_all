@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:mvp_all_9/pages/main_menu/main_menu_view.dart';
-import 'package:mvp_all_9/pages/recover_password/recover_password_view.dart';
+  import 'package:mvp_all_9/pages/recover_password/recover_password_view.dart';
 import 'package:mvp_all_9/pages/register/register_screen.dart';
+import 'package:mvp_all_9/pages/store/store_view.dart';
 import 'package:mvp_all_9/style/colors/colors_views.dart';
 
 class LoginForm extends StatefulWidget {
@@ -14,7 +14,6 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  final _formKey = GlobalKey<FormState>();
   bool _passwordVisible = false;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -195,9 +194,6 @@ class _LoginFormState extends State<LoginForm> {
                                   borderRadius: BorderRadius.circular(100.0))),
                         ),
                         onPressed: () {
-                          String email = emailController.text;
-                          String password = passwordController.text;
-
                           FirebaseAuth.instance
                               .signInWithEmailAndPassword(
                                   email: emailController.text,
@@ -206,7 +202,7 @@ class _LoginFormState extends State<LoginForm> {
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const MainMenu()),
+                                    builder: (context) =>  StoreView()),
                                 (r) => false);
                           }).onError((error, stackTrace) {
                             ScaffoldMessenger.of(context).showSnackBar(

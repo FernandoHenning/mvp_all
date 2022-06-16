@@ -13,46 +13,52 @@ class FoodCustomGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 368, // Para una sola fila poner en 345 y 500 para 2 filas
-      child: GridView.count(
-        primary: false,
-        padding: const EdgeInsets.all(20),
-        crossAxisSpacing: 5,
-        mainAxisSpacing: 5,
-        crossAxisCount: 1,
-        scrollDirection: Axis.horizontal,
-        children: List.generate(_imagesUrl.length, (index) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const BlankView()));
-            },
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              child: Card(
-                surfaceTintColor: Colors.white,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Image.network(
-                      _imagesUrl[index],
-                      height:
-                          200, // Para una sola fila poner en 200 y 115 para 2 filas
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
-                        style: TextStyle(color: Colors.black.withOpacity(0.6)),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: SizedBox(
+        height: 250, // Para una sola fila poner en 345 y 500 para 2 filas
+        width: double.infinity,
+        child: GridView.count(
+          primary: false,
+          padding: const EdgeInsets.all(10),
+          crossAxisSpacing: 1,
+          mainAxisSpacing: 1,
+          crossAxisCount: 1,
+          scrollDirection: Axis.horizontal,
+          children: List.generate(_imagesUrl.length, (index) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const BlankView()));
+              },
+              child: Container(
+                padding: const EdgeInsets.all(15),
+                child: Card(
+                  surfaceTintColor: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Image.network(
+                        _imagesUrl[index],
+                        height:
+                            120, // Para una sola fila poner en 200 y 115 para 2 filas
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Text(
+                          'Greyhound divisively hello coldly wonderfully marginally far upon excluding.',
+                          style: TextStyle(
+                              color: Colors.black.withOpacity(0.6),
+                              fontSize: 10),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }

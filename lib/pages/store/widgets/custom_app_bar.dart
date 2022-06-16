@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       backgroundColor: ColorsViews.backgrounAppBar,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
@@ -15,7 +16,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       title: Text("Tienda"),
       actions: <Widget>[
-        NamedIcon(
+          NamedIcon(
           iconData: Icons.shopping_bag_outlined,
           notificationCount: 0,
           onTap: () {},

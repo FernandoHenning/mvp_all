@@ -6,7 +6,7 @@ class MyPetsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 5),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,13 +30,13 @@ class MyPetsWidget extends StatelessWidget {
                     shape: BoxShape.circle,
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                     children: [
                       ClipOval(
                         child: Image.network(
                           "https://images-na.ssl-images-amazon.com/images/G/33/img20/Pets/TopLevel/DOG_400x400.jpg",
-                          height: 70,
-                          width: 70,
+                          height: 50,
+                          width: 50,
                         ),
                       ),
                       Text("Mi perro")
@@ -47,6 +47,7 @@ class MyPetsWidget extends StatelessWidget {
                   width: 20,
                 ),
                 Container(
+
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                   ),
@@ -63,7 +64,7 @@ class MyPetsWidget extends StatelessWidget {
                                   width: 1,
                                   color: Colors.grey
                               )),
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(10),
                               primary: Colors.grey[200], // <-- Button color
                               onPrimary: Colors.grey, // <-- Splash color
                             ),

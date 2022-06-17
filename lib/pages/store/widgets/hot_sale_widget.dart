@@ -10,7 +10,7 @@ class HotSalesCarousel extends StatefulWidget {
 }
 
 class _HotSalesCarouselState extends State<HotSalesCarousel> {
-  Future<List<String>> _imagesUrl = GetImagesCarousel();
+
   int pagePosition = 1;
   late PageController _pageController;
   @override
@@ -73,7 +73,7 @@ class _HotSalesCarouselState extends State<HotSalesCarousel> {
           return Text('State: ${snapshot.connectionState}');
         }
         },
-        future: _imagesUrl,
+        future: GetImagesCarousel(),
       ),
     );
   }

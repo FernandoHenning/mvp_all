@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mvp_all_9/pages/main_menu/widgets/products_nearby.dart';
+import 'package:mvp_all_9/pages/main_menu/widgets/search_field.dart';
 import 'package:mvp_all_9/pages/store/widgets/custom_app_bar.dart';
 import 'package:mvp_all_9/pages/store/widgets/my_pets.dart';
+import 'package:mvp_all_9/pages/store/widgets/hot_sale_widget.dart';
 import 'package:mvp_all_9/pages/store/widgets/products_and_services.dart';
 import 'package:mvp_all_9/pages/store/widgets/user_info.dart';
 
@@ -27,7 +30,10 @@ class _StoreViewState extends State<StoreView> {
                 Divider(thickness: 1),
                 MyPetsWidget(),
                 ProductsAndServicesWidget(),
-
+                CustomSearchBar(),
+                HotSalesCarousel(),
+                Divider(thickness: 1),
+                ProductNearby()
               ],
             ),
           ),

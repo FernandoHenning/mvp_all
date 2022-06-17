@@ -29,7 +29,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                         fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: ' Juan',
+                    text: ' Roberto',
                     style: TextStyle(
                         color: ColorsViews.backgroundButtonActiveColor,
                         fontSize: 30,

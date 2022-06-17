@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvp_all_9/pages/store/widgets/custom_app_bar.dart';
+import 'package:mvp_all_9/pages/store/widgets/my_pets.dart';
+import 'package:mvp_all_9/pages/store/widgets/products_and_services.dart';
 import 'package:mvp_all_9/pages/store/widgets/user_info.dart';
 
 
@@ -20,9 +22,11 @@ class _StoreViewState extends State<StoreView> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal:20, vertical:10),
             child: Column(
-              children: const [
+              children:   [
                 UserInfoWidget(),
                 Divider(thickness: 1),
+                MyPetsWidget(),
+                ProductsAndServicesWidget(),
 
               ],
             ),

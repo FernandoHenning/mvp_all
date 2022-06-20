@@ -50,9 +50,6 @@ class _HotSalesCarouselState extends State<HotSalesCarousel> {
                       pageSnapping: true,
                       controller: _pageController,
                       onPageChanged: (page) {
-                        setState(() {
-                          pagePosition = page;
-                        });
                       },
                       itemBuilder: (context, pagePosition) {
                         return  Image.network(

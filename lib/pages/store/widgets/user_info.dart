@@ -10,6 +10,7 @@ class UserInfoWidget extends StatefulWidget {
 
 class _UserInfoWidgetState extends State<UserInfoWidget> {
   String dropdownValue = 'Calle 10 9';
+  String dropdownValue2 = 'Entregar a domicilio';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,7 +30,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                         fontWeight: FontWeight.bold),
                   ),
                   TextSpan(
-                    text: ' Roberto',
+                    text: ' Juan',
                     style: TextStyle(
                         color: ColorsViews.backgroundButtonActiveColor,
                         fontSize: 30,
@@ -109,7 +110,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: DropdownButton<String>(
                   underline: Container(),
-                  value: "Entregar a domicilio",
+                  value: dropdownValue2,
 
                   icon: const Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black,),
                   elevation: 8,
@@ -120,7 +121,7 @@ class _UserInfoWidgetState extends State<UserInfoWidget> {
                   ),
                   onChanged: (String? newValue) {
                     setState(() {
-                      dropdownValue = newValue!;
+                      dropdownValue2 = newValue!;
                     });
                   },
                   items: <String>['Entregar a domicilio']

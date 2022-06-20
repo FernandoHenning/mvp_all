@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mvp_all_9/pages/login/main_login.dart';
 import 'package:mvp_all_9/pages/store/widgets/named_icon.dart';
 import 'package:mvp_all_9/style/colors/colors_views.dart';
 
@@ -12,7 +14,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: ColorsViews.backgrounAppBar,
       leading: IconButton(
         icon: const Icon(Icons.arrow_back),
-        color: ColorsViews.activeSliderColor, onPressed: () {  },
+        color: ColorsViews.activeSliderColor, onPressed: () {
+        FirebaseAuth.instance.signOut().then((value) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const LoginScreen()),
+          );
+        });
+      },
       ),
       title: Text("Tienda"),
       actions: <Widget>[
